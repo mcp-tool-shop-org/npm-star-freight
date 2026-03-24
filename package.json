@@ -13,7 +13,6 @@
   },
   "files": [
     "bin/",
-    "logo.png",
     "README*.md",
     "LICENSE",
     "CHANGELOG.md"

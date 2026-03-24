@@ -93,6 +93,10 @@ star-freight --clear-cache
 | macOS ARM64 | `star-freight-<version>-darwin-arm64` |
 | Windows x64 | `star-freight-<version>-win-x64.exe` |
 
+## Security
+
+**Threat model:** This package downloads pre-built binaries from GitHub Releases over HTTPS and verifies SHA256 checksums before execution. It does NOT collect telemetry, store credentials, make network requests beyond `github.com`, or write outside the user cache directory (`~/.cache/mcptoolshop/star-freight/`). The executed binary runs with caller permissions and writes game saves to the current working directory only. See [SECURITY.md](SECURITY.md) for the full policy.
+
 ## Source repository
 
 The game source lives at [mcp-tool-shop-org/star-freight](https://github.com/mcp-tool-shop-org/star-freight).

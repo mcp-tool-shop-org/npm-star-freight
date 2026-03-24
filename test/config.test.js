@@ -25,8 +25,8 @@ describe("launch config", () => {
       assert.equal(config.toolName, "star-freight");
       assert.equal(config.owner, "mcp-tool-shop-org");
       assert.equal(config.repo, "star-freight");
-      assert.equal(config.version, "1.0.2");
-      assert.equal(config.tag, "v1.0.2");
+      assert.equal(config.version, "1.0.3");
+      assert.equal(config.tag, "v1.0.3");
     } finally {
       Module._resolveFilename = originalResolve;
     }

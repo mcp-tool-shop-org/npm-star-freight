@@ -7,8 +7,8 @@ process.env.MCPTOOLSHOP_LAUNCH_CONFIG = JSON.stringify({
   toolName: "star-freight",
   owner: "mcp-tool-shop-org",
   repo: "star-freight",
-  version: "1.0.2",
-  tag: "v1.0.2",
+  version: "1.0.3",
+  tag: "v1.0.3",
 });
 
 require("@mcptoolshop/npm-launcher/bin/mcptoolshop-launch.js");

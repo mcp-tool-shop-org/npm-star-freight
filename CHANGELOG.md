@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.4 -- 2026-03-24
+
+- Full Treatment: landing page, handbook, translations (7 languages), shipcheck
+- README with threat model, brand logo, language nav
+
 ## 1.0.3 -- 2026-03-24
 
 - Bump to match source v1.0.3 (first release with pre-built binaries)

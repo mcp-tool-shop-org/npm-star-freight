@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.5 -- 2026-03-25
+
+- Add `--version` / `-V` flag (prints wrapper version)
+- Add 5 version consistency tests (semver, >= 1.0.0, CHANGELOG, --version, -V)
+
 ## 1.0.4 -- 2026-03-24
 
 - Full Treatment: landing page, handbook, translations (7 languages), shipcheck

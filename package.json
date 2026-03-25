@@ -1,6 +1,6 @@
 {
   "name": "@mcptoolshop/star-freight",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Space merchant RPG CLI — zero-prerequisite npx install",
   "type": "commonjs",
   "license": "MIT",

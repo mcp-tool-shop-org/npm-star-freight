@@ -1,68 +1,68 @@
 ---
 title: Reference
-description: Technical reference for the npm launcher and the Star Freight game world.
+description: Technical reference for the Star Freight npm launcher.
 sidebar:
-  order: 2
+  order: 4
 ---
 
 ## Launcher commands
 
-The npm wrapper adds two helper commands:
+The npm wrapper provides these built-in commands:
 
 | Command | Description |
 |---------|-------------|
-| `star-freight --print-cache-path` | Print the local cache directory for this version |
+| `star-freight --version` / `-V` | Print the npm wrapper version |
+| `star-freight --print-cache-path` | Print the local cache directory for this binary version |
 | `star-freight --clear-cache` | Delete all cached binaries |
 
-All other arguments are passed through to the Star Freight binary.
+All other arguments are passed through to the Star Freight game binary unchanged.
 
-## How the launcher works
+## Version information
 
-The launcher uses `@mcptoolshop/npm-launcher` which implements:
+The npm wrapper version and the game binary version are tracked independently:
 
-1. **Platform detection** -- identifies OS and architecture
-2. **Asset naming** -- looks for `star-freight-<version>-<os>-<arch>` on GitHub Releases
-3. **Download** -- HTTPS from github.com with atomic writes
-4. **Checksum verification** -- SHA256 against `checksums-<version>.txt`
-5. **Caching** -- stores binary in user cache, skips download on subsequent runs
-6. **Execution** -- `spawnSync` with full argv passthrough
+| Component | Current version | Where defined |
+|-----------|----------------|--------------|
+| npm wrapper | 1.0.5 | `package.json` |
+| Game binary | 1.0.3 | `bin/star-freight.js` launch config |
 
-## The world
+Running `star-freight --version` prints the npm wrapper version. The game binary has its own version output accessible through in-game menus.
 
-### Five civilizations
+## Environment variables
 
-| Civilization | Identity | Trade specialty |
-|-------------|----------|----------------|
-| **Terran Compact** | Bureaucratic human government | Manufactured goods, alloys, medical supplies |
-| **Keth Communion** | Arthropod collective, seasonal biology | Bio-crystal, organic compounds, living materials |
-| **Veshan Principalities** | Reptilian feudal houses | Weapons, armor, rare minerals |
-| **Orryn Drift** | Mobile cephalopod brokers | Information, brokered cross-civ goods |
-| **Sable Reach** | Outlaw power vacuum | Salvage, Ancestor tech, contraband |
+| Variable | Set by | Purpose |
+|----------|--------|---------|
+| `MCPTOOLSHOP_LAUNCH_CONFIG` | The wrapper (automatically) | JSON config telling npm-launcher which binary to fetch |
+| `HTTPS_PROXY` | You (optional) | Proxy URL for binary downloads behind a firewall |
 
-### Lane identities
+## Platform support
 
-Routes in Star Freight are governed corridors, not open space:
+| Platform | Architecture | Binary name pattern |
+|----------|-------------|-------------------|
+| Linux | x64 | `star-freight-<version>-linux-x64` |
+| macOS | ARM64 | `star-freight-<version>-darwin-arm64` |
+| Windows | x64 | `star-freight-<version>-win-x64.exe` |
 
-| Identity | Meaning |
-|----------|---------|
-| **Inspected** | Compact-monitored, high contraband risk |
-| **Convoy** | Protected relief route, schedule-bound |
-| **Contested** | Disputed territory, ambush risk |
-| **Hazard** | Debris, asteroid, nebula terrain |
-| **Gray** | Unpoliced, highest danger, lowest scrutiny |
+## Cache locations
 
-### Captain postures
+| OS | Path |
+|----|------|
+| Linux / macOS | `~/.cache/mcptoolshop/star-freight/` |
+| Windows | `%LOCALAPPDATA%\mcptoolshop\star-freight\` |
 
-| Posture | Core mechanic | Pressure |
-|---------|--------------|----------|
-| **Relief** | Convoy access, provision bonuses | Inspection scrutiny, schedule delays |
-| **Gray** | Falsified manifests, timing arbitrage | Seizure exposure, heat accumulation |
-| **Honor** | Challenge rights, escort premiums | Standing volatility, escalation risk |
+## Security model
 
-## Security
+- Binary downloads use HTTPS only, from `github.com`
+- SHA256 checksum verification on every download
+- No telemetry, no credential storage, no network requests beyond GitHub
+- Binary runs with the same permissions as the calling user
+- Game saves are written to the current working directory
+- Full policy: [SECURITY.md](https://github.com/mcp-tool-shop-org/npm-star-freight/blob/main/SECURITY.md)
 
-This package downloads pre-built binaries from GitHub Releases and verifies SHA256 checksums. It does not collect telemetry, store credentials, or make requests beyond github.com. See [SECURITY.md](https://github.com/mcp-tool-shop-org/npm-star-freight/blob/main/SECURITY.md) for the full threat model.
+## Source repositories
 
-## Source
-
-The game source lives at [mcp-tool-shop-org/star-freight](https://github.com/mcp-tool-shop-org/star-freight). The Python package is also available via `pip install star-freight`.
+| Repository | Contents |
+|-----------|----------|
+| [mcp-tool-shop-org/npm-star-freight](https://github.com/mcp-tool-shop-org/npm-star-freight) | This npm launcher wrapper |
+| [mcp-tool-shop-org/star-freight](https://github.com/mcp-tool-shop-org/star-freight) | The game source code (Python) |
+| [mcp-tool-shop-org/npm-launcher](https://github.com/mcp-tool-shop-org/npm-launcher) | Shared launcher library |
